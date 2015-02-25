@@ -1,0 +1,195 @@
+################################################################################
+##
+## This is an example file for defining your own code templates.
+##
+## The syntax for defining code templates is:
+## #TEMPLATE <template name>,<field>[=default value], <field>...
+##
+## The template name, the fields and their default values should be defined 
+## within quotes if they contain, for example space characters, equal signs, 
+## or comma characters.
+## Use "&" in front of a letter to make the letter become a shortcut,
+## which means that you can use ALT+<letter> to select the template or jump
+## to the field in the dialog box.
+## Use ">" in the template to name organize the templates in submenus.
+##
+################################################################################
+#TEMPLATE "if"
+if( %c )
+{
+  
+}
+#TEMPLATE "if-else"
+if( %c )
+{
+
+}
+else
+{
+
+}
+#TEMPLATE while
+while( %c )
+{
+
+}
+#TEMPLATE "do-while"
+do
+{
+
+}
+while( %c );
+#TEMPLATE switch
+switch( %c )
+{
+   case  : break;
+   //case  : break;
+   default : break;
+}  
+#TEMPLATE for,"&End Value"=10,&Variable=i
+for(int %2 = 0; %2 < %1; ++%2)
+{
+  %c
+}
+#TEMPLATE "include"
+#include <%c.h>
+#TEMPLATE "define"
+#define %c
+#TEMPLATE "interrupt func", adr
+#pragma vector = %1
+__interrupt void %1_interrupt(void)
+{
+  %c
+}
+#TEMPLATE "void func", "Func name"
+void %1(void)
+{
+  %c
+}
+#TEMPLATE "comment for func", "Func name",Returns,Param,Purpose
+/**************************************************************************
+*   Function name :   %1
+*   Returns :         %2       
+*   Parameters :      %3    
+*   Purpose :         %4       
+****************************************************************************/
+#TEMPLATE "comment for file",target,compiler,description,revisions
+/**************************************************************************
+*  File........: $FILE_FNAME$
+*  Author(s)...: $USER_NAME$
+*  Target(s)...: %1
+*  Compiler....: %2
+*  Description.: %3
+*  Revisions...: %4
+*  $DATE$ - VER. - COMMENT                                        - SIGN.
+****************************************************************************/
+%c
+#TEMPLATE &Corporate>&class,"Class &name",&Description=--,&Created="$DATE$, by $USER_NAME$"
+//******************
+// CLASS: %1
+//
+// DESCRIPTION:
+//  %2
+//
+// CREATED: %3
+//
+// FILE: $FILE_FNAME$
+//
+class %1
+{
+public:
+  %1();
+  ~%1();
+  %c
+};
+#TEMPLATE &Corporate>&main,&Traget,F_CPU
+/*******************************************************************************
+* File:    main.c      
+* Autor:   $USER_NAME$    
+* Created: $DATE$
+* Traget:  %1 (%2 Hz)
+*******************************************************************************/
+
+//-----------------Config--#defines---------------------------------------------
+#define F_CPU %2L
+
+//#define #######
+//------------------------------------------------------------------------------
+
+//-------------------------#include---------------------------------------------
+#include <ioavr.h>
+#include <intrinsics.h>
+//------------------------------------------------------------------------------
+
+//-------------------------#define----------------------------------------------
+//------------------------------------------------------------------------------
+
+//-------------------------Global variables-------------------------------------
+//------------------------------------------------------------------------------
+
+//-------------------------The function prototypes------------------------------
+//------------------------------------------------------------------------------
+
+//-------------------------Interrupt--------------------------------------------
+//------------------------------------------------------------------------------
+
+/*******************************************************************************
+* Function name: gpio_init
+* Returns:       0       
+* Parameters:    none    
+* Purpose:       initialize GPIO       
+*******************************************************************************/
+void gpio_init(void)
+{
+  
+}
+
+/*******************************************************************************
+* Function name: main
+* Returns:       0       
+* Parameters:    none    
+* Purpose:       main function       
+*******************************************************************************/
+int main( void )
+{ 
+  gpio_init();
+
+  while(1)
+  {
+    %c
+  }
+  
+  return 0;
+}
+#TEMPLATE &Corporate>&header,&Name,Purpose
+/*******************************************************************************
+* File:     $FILE_FNAME$      
+* Autor:    $USER_NAME$    
+* Created:  $DATE$
+* Purpose:  %2
+*******************************************************************************/
+#ifndef %1_H_
+#define %1_H_
+
+//-------------------------#include---------------------------------------------
+%c
+//------------------------------------------------------------------------------
+
+//-------------------------#define----------------------------------------------
+//------------------------------------------------------------------------------
+
+//-------------------------The function prototypes------------------------------
+//------------------------------------------------------------------------------
+
+#endif /* %1_H_ */
+#TEMPLATE &Corporate>&function,&Name,Returns,Parameters,Purpose
+/*******************************************************************************
+* Function name: %1
+* Returns:       %2       
+* Parameters:    %3    
+* Purpose:       %4       
+*******************************************************************************/
+%2 %1(%3)
+{
+  %c
+}
